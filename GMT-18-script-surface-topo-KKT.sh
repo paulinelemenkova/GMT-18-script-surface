@@ -20,13 +20,13 @@ gmtdefaults -D > .gmtdefaults
 # Step-4. Download data:
 ### http://topex.ucsd.edu/cgi-bin/get_data.cgi
 ## E-144-162;N40-51.
-# Step-5. Make color palette
-gmt makecpt -CGMT_sealand.cpt -V -T-10000/2200 > surface.cpt
-# Step-6. Check up dimensions of the table (data range)
+# Step-5. Check up dimensions of the table (data range)
 gmt info topo_KKT.xyz
+# output: N = 1023707    <144.0083/162.0083>    <39.9976/50.9968>    <-9677/2143>
+# Step-6. Make color palette
+gmt makecpt -CGMT_sealand.cpt -V -T-10000/2200 > surface.cpt
 # Step-7. Generate 1 by 1 minute block mean values from the raw ASCII data (xyg table)
 gmt blockmean topo_KKT.xyz -R144/162/40/51 -I1m -Vv > topo_KKT_BM.xyg
-# output: N = 1023707    <144.0083/162.0083>    <39.9976/50.9968>    <-9677/2143>
 # Step-8. Generate grid from xyz table format
 gmt surface topo_KKT_BM.xyg -R144/162/40/51 -T0.25 -I30s -GSurface_KKT.nc -Vv
 # Step-9. Make raster image
